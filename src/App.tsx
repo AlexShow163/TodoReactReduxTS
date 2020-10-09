@@ -2,7 +2,8 @@ import React from 'react';
 import './App.scss';
 import {Header} from "./components/Header/Header";
 import {TemporaryDrawer} from "./components/TemporaryDrawer/TemporaryDrawer";
-import {Box} from "@material-ui/core";
+import {Main} from "./components/Main/Main"
+import {Box, Container} from "@material-ui/core";
 
 
 
@@ -14,6 +15,9 @@ const App: React.FC = () => {
         <Box>
             <Header />
             <TemporaryDrawer />
+            <Container>
+                <Main/>
+            </Container>
         </Box>
     </>
   );
