@@ -5,9 +5,7 @@ import {Main} from "./components/Main/Main"
 import {Box, Container,} from "@material-ui/core";
 
 
-import {ActiveTasks} from "./components/Main/ActiveTasks/ActiveTasks";
-import {TasksInProgress} from "./components/Main/TaskInProgress/TasksInProgress";
-import {CompletedTasks} from "./components/Main/CompletedTasks/ComplitedTasks";
+import {CardsTasks} from "./components/Main/CardsTasks/CardsTasks";
 import {AddTasks} from "./components/Main/AddITasks/AddTasks";
 import {Tasks} from "./components/Main/Tasks/Tasks";
 
@@ -23,12 +21,12 @@ const App: React.FC = () => {
             <TemporaryDrawer />
             <Container>
                 <Main>
-                   <ActiveTasks>
+                   <CardsTasks title="Активные задачи">
                        <AddTasks/>
                        <Tasks/>
-                   </ActiveTasks>
-                    <TasksInProgress/>
-                    <CompletedTasks/>
+                   </CardsTasks>
+                    <CardsTasks title="Задачи в процессе"/>
+                    <CardsTasks title="Выполнено"/>
                 </Main>
             </Container>
         </Box>

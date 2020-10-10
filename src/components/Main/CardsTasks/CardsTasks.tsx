@@ -9,17 +9,21 @@ const useStyles = makeStyles({
 
 });
 
+type cardsTasksTypes ={
+    title: string
+}
 
-export const ActiveTasks: React.FC = ({children}) => {
+
+export const CardsTasks: React.FC<cardsTasksTypes> = (props) => {
     const classes = useStyles()
     return (
         <Box
             width="30%"
             className="bg-frame"
         >
-            <Typography className={classes.title} variant="h4">Активные задачи</Typography>
+            <Typography className={classes.title} variant="h4">{props.title}</Typography>
             <Box>
-                {children}
+                {props.children}
             </Box>
         </Box>
     )

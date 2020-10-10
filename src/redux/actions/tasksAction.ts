@@ -7,11 +7,11 @@ interface addTaskHandlerAction  {
     payload: ITask,
     }
 
-export const addTaskHandler = (task:ITask):addTaskHandlerAction => {
+export const addTaskHandler = (item:ITask):any => {
     return {
         type: ADD_TASK_HANDLER,
-        payload: {
-            ...task
-        }
+        item
+
+
     }
 }

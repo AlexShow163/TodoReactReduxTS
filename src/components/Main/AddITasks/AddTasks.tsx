@@ -3,6 +3,9 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {Button} from "@material-ui/core";
 import Icon from '@material-ui/core/Icon';
+import {useDispatch} from "react-redux";
+import {addTaskHandler} from "../../../redux/actions/tasksAction";
+import {ITask} from "../../../redux/reducer/taskReducer";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,21 +27,30 @@ const useStyles = makeStyles((theme: Theme) =>
 export const AddTasks: React.FC = () => {
     const [task, setTask] = useState<string>('')
     const classes = useStyles();
+    const dispatch = useDispatch()
 
-    const onChangeTaskHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
-        setTask(event.target.value)
+    const addTaskDispatch = (item:ITask) => dispatch(addTaskHandler(item))
 
+    const sendTaskDispatch = (item:string) => {
+        let sendTask = {
+            id: 1 - 0.5 + Math.random() * (1000 - 1 + 1),
+            title: item,
+            isDone: false
+        }
+        console.log(sendTask)
+        addTaskDispatch(sendTask)
     }
+
+    const onChangeTaskHandler = (event:React.ChangeEvent<HTMLInputElement>) => setTask(event.target.value)
 
     const onSubmitTaskHandler = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(task)
+        sendTaskDispatch(task)
         setTask('')
     }
-
     const onKeyTaskHandler = (event:React.KeyboardEvent) => {
         if(event.key === 'Enter') {
-            console.log(task)
+            sendTaskDispatch(task)
             event.preventDefault()
             setTask('')
         }
