@@ -1,8 +1,17 @@
 import React from 'react'
+import {Grid} from "@material-ui/core";
 
 
- export const Main: React.FC  = () => {
+
+ export const Main: React.FC  = ({children}) => {
     return (
-        <h3>I am MAIN</h3>
+        <Grid
+            container
+            justify="space-between"
+            alignItems="flex-start"
+            className="wrap-tasks"
+        >
+            {children}
+        </Grid>
     )
 }
