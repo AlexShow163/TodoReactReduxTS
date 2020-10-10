@@ -8,3 +8,7 @@ export const rootReducer =  combineReducers({
 })
 
 export type RootState = ReturnType<typeof rootReducer>
+
+type PropTypes<T> = T extends {[key:string] : infer U} ? U : never
+
+export type ActionsTypes<T extends {[key:string] : (...args:any[] ) => any}> = ReturnType<PropTypes<T>>

@@ -1,17 +1,11 @@
 import {ADD_TASK_HANDLER} from "../actionTypes";
 import {ITask} from "../reducer/taskReducer";
+import {ActionsTypes} from "../rootReducer";
+
+ export type InferActionsTypes = ActionsTypes<typeof creators>
 
 
-interface addTaskHandlerAction  {
-    type: typeof ADD_TASK_HANDLER,
-    payload: ITask,
-    }
-
-export const addTaskHandler = (item:ITask):any => {
-    return {
-        type: ADD_TASK_HANDLER,
-        item
-
-
-    }
+export const creators = {
+     addTaskHandler:  (item:ITask) =>({type: ADD_TASK_HANDLER,item} as const)
 }
+

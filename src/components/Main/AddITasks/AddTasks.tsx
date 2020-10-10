@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import {Button} from "@material-ui/core";
 import Icon from '@material-ui/core/Icon';
 import {useDispatch} from "react-redux";
-import {addTaskHandler} from "../../../redux/actions/tasksAction";
+import { creators} from "../../../redux/actions/tasksAction";
 import {ITask} from "../../../redux/reducer/taskReducer";
 
 
@@ -29,7 +29,7 @@ export const AddTasks: React.FC = () => {
     const classes = useStyles();
     const dispatch = useDispatch()
 
-    const addTaskDispatch = (item:ITask) => dispatch(addTaskHandler(item))
+    const addTaskDispatch = (item:ITask) => dispatch(creators.addTaskHandler(item))
 
     const sendTaskDispatch = (item:string) => {
         let sendTask = {

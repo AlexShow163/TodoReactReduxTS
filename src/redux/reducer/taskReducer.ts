@@ -1,4 +1,5 @@
 import {ADD_TASK_HANDLER} from "../actionTypes";
+import {InferActionsTypes} from '../actions/tasksAction'
 
 export interface ITask  {
     id: number | string,
@@ -24,7 +25,7 @@ const initialState =  {
 }
 
 
-export  default  function (state:any = initialState, action:any ) {
+export  default  function (state:any = initialState, action:InferActionsTypes ) {
     switch(action.type) {
         case ADD_TASK_HANDLER:
             return {
