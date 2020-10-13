@@ -2,6 +2,7 @@ import React from "react";
 import {Box, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles({
     title: {
         marginTop: 10,
@@ -10,11 +11,13 @@ const useStyles = makeStyles({
 });
 
 type cardsTasksTypes ={
-    title: string
+    title: string,
+
 }
 
 
-export const CardsTasks: React.FC<cardsTasksTypes> = (props) => {
+
+export const BoardTasks: React.FC<cardsTasksTypes> = (props) => {
     const classes = useStyles()
     return (
         <Box
@@ -22,9 +25,8 @@ export const CardsTasks: React.FC<cardsTasksTypes> = (props) => {
             className="bg-frame"
         >
             <Typography className={classes.title} variant="h4">{props.title}</Typography>
-            <Box>
-                {props.children}
-            </Box>
+            {props.children}
+
         </Box>
     )
 }

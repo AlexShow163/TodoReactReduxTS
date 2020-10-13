@@ -25,7 +25,7 @@ type Anchor = 'left';
 export const TemporaryDrawer:React.FC = () => {
     const isMenu = useSelector((state:RootState) => {
         return state.menuReducer.isMenu})
-    console.log(isMenu)
+
     const classes = useStyles();
     const [state, setState] = React.useState({
         left: false,
@@ -35,8 +35,7 @@ export const TemporaryDrawer:React.FC = () => {
 
     useEffect(() =>{
         setState({ ...state, left: isMenu });
-        console.log('render')
-    }, [isMenu])
+    }, [isMenu])//Пофиксить
 
     const toggleDrawer = (open: boolean) => (
         event: React.KeyboardEvent | React.MouseEvent,

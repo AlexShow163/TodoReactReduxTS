@@ -23,19 +23,23 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+type addTasksType = {
+    status: string
+}
 
-export const AddTasks: React.FC = () => {
+
+export const AddTasks: React.FC<addTasksType> = (props) => {
     const [task, setTask] = useState<string>('')
     const classes = useStyles();
     const dispatch = useDispatch()
 
     const addTaskDispatch = (item:ITask) => dispatch(creators.addTaskHandler(item))
 
-    const sendTaskDispatch = (item:string) => {
+    const sendTaskDispatch = (item:string, status:string) => {
         let sendTask = {
             id: 1 - 0.5 + Math.random() * (1000 - 1 + 1),
             title: item,
-            isDone: false
+            status: status
         }
         console.log(sendTask)
         addTaskDispatch(sendTask)
@@ -44,20 +48,28 @@ export const AddTasks: React.FC = () => {
     const onChangeTaskHandler = (event:React.ChangeEvent<HTMLInputElement>) => setTask(event.target.value)
 
     const onSubmitTaskHandler = (event:React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        sendTaskDispatch(task)
-        setTask('')
+       if(task.length === 0) {
+           alert('Введите данные')
+       }else {
+           event.preventDefault()
+           console.log(props.status)
+           sendTaskDispatch(task,props.status)
+           setTask('')
+       }
     }
     const onKeyTaskHandler = (event:React.KeyboardEvent) => {
         if(event.key === 'Enter') {
-            sendTaskDispatch(task)
-            event.preventDefault()
-            setTask('')
+            if(task.length !== 0){
+                sendTaskDispatch(task,props.status)
+                event.preventDefault()
+                setTask('')
+            }
         }
     }
 
 
     return (
+
         <form
             className={classes.root}
             noValidate autoComplete="off"
@@ -81,6 +93,7 @@ export const AddTasks: React.FC = () => {
                 Создать
             </Button>
         </form>
+
 
 
     )
