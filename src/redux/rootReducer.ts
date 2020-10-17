@@ -1,10 +1,11 @@
 import {combineReducers} from "redux";
 import taskReducer from './reducer/taskReducer'
 import menuReducer from './reducer/menuReducer'
+import {boardsReducer} from "./reducer/boardsReducer";
 
 
 export const rootReducer =  combineReducers({
-    taskReducer,menuReducer
+    taskReducer,menuReducer,boardsReducer,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
