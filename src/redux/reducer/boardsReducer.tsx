@@ -20,7 +20,7 @@ type cardsState = {
 
 
 
- export const initialState = {
+ export const initialState:IBoardsState = {
     boards: [
         {
             id: 23,
@@ -55,7 +55,7 @@ type cardsState = {
     ]
 }
 
-export  function boardsReducer (state:any= initialState, action:InferActionsTypes) {
+export  function boardsReducer (state:IBoardsState= initialState, action:InferActionsTypes) {
     switch (action.type) {
         case ADD_BOARD:
             const newBoard = {
@@ -65,7 +65,7 @@ export  function boardsReducer (state:any= initialState, action:InferActionsType
             }
             return {
                 ...state,
-                boards: state.boards = [...state.boards,newBoard]
+                boards:  [...state.boards,newBoard]
 
             }
         default:

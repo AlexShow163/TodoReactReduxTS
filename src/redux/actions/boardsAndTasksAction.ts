@@ -1,4 +1,3 @@
-import {ITask} from "../reducer/taskReducer";
 import {ActionsTypes} from "../rootReducer";
 import {ADD_BOARD} from "../actionTypes";
 

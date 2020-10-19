@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper} from "@material-ui/core";
+import {Button, Paper} from "@material-ui/core";
 import {Title} from "../Title/Title";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {Card} from "../Card/Card";
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export  const BoardsComponent:React.FC = () => {
     const classes = useStyles()
-    const boardsData = useSelector((state:RootState) => state.boardsReducer.boards)
+    const {boards} = useSelector((state:RootState) => state.boardsReducer)
     const dispatch = useDispatch()
     const addCards = (title:string,id:string) => dispatch(creators.addCard(title,id))
 
@@ -42,14 +42,13 @@ export  const BoardsComponent:React.FC = () => {
 
 
     const handleAddCard = (title:string) => {
-        console.log('work buch')
-        console.log('BOSS', title)
-        // let boardId = keysToId()
-        // addCards(title,boardId)
+        let boardId = keysToId()
+        addCards(title,boardId)
     }
 
 
-    console.log(boardsData);
+    console.log(boards);
+
 
     return (
        <functionApi.Provider value={{handleAddCard}}>
@@ -60,6 +59,7 @@ export  const BoardsComponent:React.FC = () => {
                <Card/>
                <Card/>
                <InputContainer type='card'/>
+               <Button onClick={() => handleAddCard("test")}>Test</Button>
 
 
            </Paper>
