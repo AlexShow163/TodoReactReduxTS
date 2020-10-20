@@ -1,6 +1,7 @@
 import React from "react";
 import {Paper} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import {cardsState} from "../../redux/reducer/boardsReducer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,12 +14,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export const Card:React.FC = () => {
+export const Card:React.FC<cardsState> = ({info,id}) => {
     const classes = useStyles()
+
 
     return(
        <div>
-           <Paper className={classes.card}>I am card component</Paper>
+           <Paper className={classes.card}>{info}</Paper>
        </div>
     )
 }

@@ -23,19 +23,24 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+type boardsIdTypes = string | number | undefined
+
 interface InputContainerInterface {
     type: string
+    boardId?: boardsIdTypes
 }
 
 
-export const InputContainer:React.FC<InputContainerInterface> = ({type}) => {
+export const InputContainer:React.FC<InputContainerInterface> = ({type,boardId}) => {
     const classes = useStyles()
     const[open,setOpen] = useState<boolean>(false)
+
+   const buttonText = type === "card" ?"+ Добавить задачу": "Добавить доску"
 
     return (
         <div className={classes.root}>
             <Collapse in={open}>
-                <InputCard setOpen={setOpen} type={type}/>
+                <InputCard setOpen={setOpen} boardId={boardId} type={type} />
             </Collapse>
             <Collapse in={!open}>
                 <Paper
@@ -44,7 +49,7 @@ export const InputContainer:React.FC<InputContainerInterface> = ({type}) => {
                 >
                     <Typography
                         onClick={() => setOpen(!open)}
-                    > {type === "card" ?"+ Добавить задачу": "Добавить доску"}</Typography>
+                    > {buttonText}</Typography>
                 </Paper>
             </Collapse>
 

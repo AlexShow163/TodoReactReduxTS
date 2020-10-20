@@ -5,6 +5,7 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import functionApi from "../../helpers/functionApi";
 
 
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         card: {
@@ -29,15 +30,17 @@ const useStyles = makeStyles((theme: Theme) =>
  export interface inputOpenType  {
     setOpen: (value:boolean) => void,
      type: string
+     boardId: string | number | undefined
 
 }
 
 
 
-export const InputCard:React.FC<inputOpenType > = ({setOpen,type,}) => {
+export const InputCard:React.FC<inputOpenType > = ({setOpen,type,boardId}) => {
     const classes = useStyles()
     const [title,setTitle] = useState<string>('')
-    const {handleAddCard} = useContext(functionApi)
+    const {handleAddBoard, handleAddCard} = useContext(functionApi)
+
 
 
 
@@ -49,7 +52,17 @@ export const InputCard:React.FC<inputOpenType > = ({setOpen,type,}) => {
 
     const handleBtnAddBoard = (event:SyntheticEvent) => {
         event.preventDefault()
-        handleAddCard('1212')
+        if(type === 'board') {
+            handleAddBoard(title)
+            setTitle('')
+        }else if(type === 'card') {
+            let card = {
+                info: title,
+                id:boardId
+            }
+            handleAddCard(card)
+            setTitle('')
+        }
     }
 
     return (

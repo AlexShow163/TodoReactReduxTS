@@ -34,23 +34,23 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
+type TypesPropsTitle = {
+    title: string
+}
 
 
 
-
-export const Title:React.FC = () => {
+export const Title:React.FC<TypesPropsTitle> = ({title}) => {
     const classes = useStyles()
-
-   
-
     const[open, setOpen] = useState<boolean>(false)
+
     return (
       <div>
           {open ?
               (<div>
                   <InputBase
                       autoFocus={true}
-                      value="I am Title"
+                      value={title}
                       inputProps={{
                           className: classes.input,
                       }}
@@ -65,7 +65,7 @@ export const Title:React.FC = () => {
                       onClick={() => setOpen(!open)}
                       className={classes.titleComponent}
                   >
-                      I am Title
+                      {title}
                   </Typography>
                   <MoreHorizRoundedIcon
                       fontSize={"large"}
